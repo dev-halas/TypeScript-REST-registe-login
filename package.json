@@ -2,7 +2,7 @@
   "name": "rest-api-app",
   "version": "1.0.0",
   "description": "Basic rest api nodeJS server on typescript",
-  "main": "index.js",
+  "main": "server/server.ts",
   "scripts": {
     "server": "nodemon server/server.ts",
     "server-build": "tsc -p tsconfig.json"
@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0"
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.0"
   }
 }
