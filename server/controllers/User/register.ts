@@ -24,18 +24,12 @@ export const RegisterUser = asyncHandler(async(req: Request, res: Response) => {
     }
 
     const salt = await bcrypt.genSalt(10)
-    const hashPassword = await bcrypt.hash(password, salt)
+    const hashPassword = await bcrypt.hash(password, salt) 
 
 
     await User.create({
         username,
         email,
         password: hashPassword
-    })
-
-    res.status(200).json({
-        username: username,
-        email: email,
-        password: password
     })
 })
