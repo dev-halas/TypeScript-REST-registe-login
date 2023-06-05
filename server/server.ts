@@ -22,6 +22,7 @@ app.listen(port, () => {
     console.log(`Server listen on port: ${port}`)
 })
 
+app.use('/api/user', userRoutes)
 app.use('/api/filmRental', filmRentalRoutes)
 app.use(errorHandler)
 
