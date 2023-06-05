@@ -4,7 +4,7 @@ export const userRoutes = express.Router()
 import { 
     RegisterUser,
     LoginUser,
-    userPanel,
+    userPanel
 } from '../controllers/index';
 
 import { authorize } from '../middlewares/authorize';
