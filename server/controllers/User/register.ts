@@ -32,7 +32,7 @@ export const RegisterUser = asyncHandler(async (req: I_UserRequest, res: Respons
     }
 
     const salt = await bcrypt.genSalt(10)
-    const hashPassword = await bcrypt.hash(password, salt)
+    const hashPassword = await bcrypt.hash(password, salt) 
 
 
     await User.create({
