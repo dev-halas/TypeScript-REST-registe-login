@@ -1,20 +1,22 @@
-import User from '../../schemas/UserSchema';
+import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import bcrypt from 'bcrypt';
-import { Request, Response } from 'express';
+import User from '../../schemas/UserSchema';
 
-export const RegisterUser = asyncHandler(async(req: Request, res: Response) => {
-    const { username, email, password } = req.body;
+interface I_UserRequest extends Request {
+  body: {
+    email: string;
+    password: string;
+    phone?: string;
+  };
+}
 
-    if (!username || !email || !password) {
+export const RegisterUser = asyncHandler(async (req: I_UserRequest, res: Response) => {
+    const { email, password, phone } = req.body;
+
+    if (!email || !password) {
         res.status(400)
         throw new Error('Please provide all fields')
-    }
-
-    const userNameExist = await User.findOne({ username })
-    if (userNameExist) {
-        res.status(400)
-        throw new Error('username already taken!')
     }
 
     const userEmailExist = await User.findOne({ email })
@@ -23,19 +25,23 @@ export const RegisterUser = asyncHandler(async(req: Request, res: Response) => {
         throw new Error('email already exist!')
     }
 
+    const userPhoneExist = await User.findOne({ phone })
+    if (userPhoneExist) {
+        res.status(400)
+        throw new Error('phone number already exist!')
+    }
+
     const salt = await bcrypt.genSalt(10)
-    const hashPassword = await bcrypt.hash(password, salt)
+    const hashPassword = await bcrypt.hash(password, salt) 
 
 
     await User.create({
-        username,
         email,
+        phone,
         password: hashPassword
     })
 
     res.status(200).json({
-        username: username,
-        email: email,
-        password: password
+        message: "Register succesfully" 
     })
-})
+});
