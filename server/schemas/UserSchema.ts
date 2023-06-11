@@ -4,6 +4,8 @@ interface IUser extends Document {
     email: string;
     phone?: string;
     password: string;
+    resetPasswordToken?: string,
+    resetPasswordExpires?: Date,
     verifyEmail: boolean;
     verifyEmailToken?: string;
     verifyEmailTokenExpire?: Date;
@@ -20,12 +22,17 @@ const userSchema: Schema = new Schema({
     },
     phone: {
         type: String,
+        unique: true,
     },
     password: {
         type: String,
         required: [true, 'Please add a password...'],
         minlength: 8,
     },
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpires: Date,
     verifyEmail: {
         type: Boolean,
         required: true,
