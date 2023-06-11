@@ -1,10 +1,11 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 interface IUser extends Document {
-    username: string;
     email: string;
-    phone?: number;
+    phone?: string;
     password: string;
+    resetPasswordToken?: string,
+    resetPasswordExpires?: Date,
     verifyEmail: boolean;
     verifyEmailToken?: string;
     verifyEmailTokenExpire?: Date;
@@ -13,11 +14,6 @@ interface IUser extends Document {
 }
 
 const userSchema: Schema = new Schema({
-    username: {
-        type: String,
-        required: [true, 'Please add username'],
-        unique: true,
-    },
     email: {
         type: String,
         required: [true, 'Please add Your email address...'],
@@ -25,13 +21,17 @@ const userSchema: Schema = new Schema({
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Invalid email... Please check email'],
     },
     phone: {
-        type: Number,
+        type: String,
     },
     password: {
         type: String,
         required: [true, 'Please add a password...'],
         minlength: 8,
     },
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpires: Date,
     verifyEmail: {
         type: Boolean,
         required: true,
