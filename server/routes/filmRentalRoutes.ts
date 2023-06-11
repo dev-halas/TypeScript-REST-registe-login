@@ -13,9 +13,9 @@ import { authorize } from '../middlewares/authorize';
 
 filmRentalRoutes.get('/GetAll', authorize, GetAll)
 filmRentalRoutes.get('/GetById/:id', authorize, GetById)
-filmRentalRoutes.post('/Add', Add)
-filmRentalRoutes.put('/Edit/:id', Edit)
-filmRentalRoutes.delete('/Delete/:id', Delete)
+filmRentalRoutes.post('/Add', authorize, Add)
+filmRentalRoutes.put('/Edit/:id', authorize, Edit)
+filmRentalRoutes.delete('/Delete/:id', authorize, Delete)
 
 
 
