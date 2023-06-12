@@ -13,5 +13,18 @@ in terminal use **npm i** command to install all dependencies
 
 SERVER_PORT = "enter the port, default is 5000"\
 MONGO_USERNAME = "your user name"\
-MONGO_PASSWORD = "your password"
+MONGO_PASSWORD = "your password"\
+
+JWT_SECRET= "secret"\
+
+EMAIL_HOST=""\
+EMAIL_PORT=""\
+EMAIL_USER=""\
+EMAIL_PASS=""\
+EMAIL_FROM=""\
+
+## ENDPOINT DOCUMENTATION\
+https://documenter.getpostman.com/view/20850669/2s8YmPuhLB
+
+
 
